@@ -1,0 +1,50 @@
+
+`ggRetro`
+==============================================================================
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(ggplot2)
+  
+  library(ggRetro)
+})
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+`ggRetro` is a package for creating floating axes, like in base R.
+
+
+Basic Usage
+------------------------------------------------------------------------------
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggRetro)
+
+p = ggplot(mtcars) +
+  geom_line(aes(mpg, wt)) +
+  theme_bw()
+p |> base_mode()
+```
+
+
+For Facet plot
+------------------------------------------------------------------------------
+
+```{r}
+p |> base_facet(c("vs"))
+```
+
+Better default theme with `oh_my_ggplot`
+
+------------------------------------------------------------------------------
+
+```{r}
+oh_my_ggplot()
+
+p |> base_mode()
+```
