@@ -11,6 +11,26 @@ matrix2tibble = function(mat, rowname_to = "rowname") {
     as_tibble()
 }
 
+
+#-----------------------------------------------------------------------------
+#' Tibble transpose
+#' @importFrom tibble rownames_to_column as_tibble
+#' @export
+#-----------------------------------------------------------------------------
+
+tt = function(tb, rownames_to = "id", colnames_from = NA) {
+  if (is.na(colnames_from)) {
+    colnames_from = colnames(tb)[[1]]
+  }
+  tb |>
+    as.data.frame() |>
+    column_to_rownames(colnames_from) |>
+    t() |>
+    as.data.frame() |>
+    rownames_to_column(rownames_to) |>
+    as_tibble()
+}
+
 #-----------------------------------------------------------------------------
 #' not in
 #' @export
