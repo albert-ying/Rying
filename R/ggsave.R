@@ -8,11 +8,11 @@
 #' @export
 #-----------------------------------------------------------------------------
 
-ggsave2 = function(filename, plot = last_plot(), filetypes = c("pdf", "png"), ...) {
+ggsave2 = function(filename, p, filetypes = c("pdf", "png"), ...) {
   barename = str_remove(filename, "\\.[^\\.]+$")
   for (filetype in filetypes) {
-    message(glue("saving to {barename}.{filetype})"))
-    ggsave(glue('{barename}.{filetype})'), plot = plot, device = filetype, ...)
+    message(glue("saving to {barename}.{filetype}"))
+    ggplot2::ggsave(as.character(glue('{barename}.{filetype}')), p,  ...)
   }
 }
 
