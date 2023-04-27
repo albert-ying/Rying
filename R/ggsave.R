@@ -23,7 +23,7 @@ ggsave2 = function(filename, plot = last_plot(), filetypes = c("pdf", "png"), ..
 #' @param ref.group The reference group
 #' @param nsd_away The distance of non-significant p-values
 #' @importFrom dplyr mutate
-#' @importFrom rstatix add_y_position add_significance stat_pvalue_manual
+#' @importFrom rstatix add_y_position add_significance
 #' @importFrom ggpubr stat_pvalue_manual
 #' @export
 
@@ -59,17 +59,17 @@ geom_pvalue = function(
   )
 }
 
-if (F) {
-  require(rstatix)
-  require(ggpubr)
+# if (F) {
+#   require(rstatix)
+#   require(ggpubr)
 
-  t_res = ToothGrowth %>%
-    t_test(len ~ dose)
-  ggplot(ToothGrowth, aes(as.character(dose), len)) +
-    geom_point() +
-    geom_boxplot() +
-    geom_pvalue(t_res)
-}
+#   t_res = ToothGrowth %>%
+#     t_test(len ~ dose)
+#   ggplot(ToothGrowth, aes(as.character(dose), len)) +
+#     geom_point() +
+#     geom_boxplot() +
+#     geom_pvalue(t_res)
+# }
 
 # -----------------------------------------------------------------------------
 #' geom_point
@@ -80,7 +80,7 @@ if (F) {
 #' @param ref.group The reference group
 #' @param nsd_away The distance of non-significant p-values
 #' @importFrom dplyr mutate
-#' @importFrom rstatix add_y_position add_significance stat_pvalue_manual
+#' @importFrom rstatix add_y_position add_significance
 #' @importFrom ggpubr stat_pvalue_manual
 #' @export
 
@@ -92,15 +92,4 @@ geom_point_border = function(..., size = 3.0, stroke_size = 0.7) {
     geom_point(color = "white", size = size, pch = 19),
     geom_point(..., pch = 19, size = size)
   )
-}
-
-if (F) {
-  require(rstatix)
-  require(ggpubr)
-  require(ggplot2)
-
-  t_res = ToothGrowth %>%
-    t_test(len ~ dose)
-  ggplot(ToothGrowth, aes(as.character(dose), len)) +
-    geom_point_border(aes(color = len), size = 10, stroke_size = 1, alpha = 0.3)
 }
