@@ -79,13 +79,26 @@ enrich_join = function(x, y, ..., by = NULL) {
 #-----------------------------------------------------------------------------
 
 install = function(x) {
-  devtools::install_github(paste0("albert-ying/", x))
+  install_github(paste0("albert-ying/", x))
+}
+
+#-----------------------------------------------------------------------------
+#' install
+#' @importFrom magrittr %>%
+#' @importFrom purrr walk
+#' @export
+#-----------------------------------------------------------------------------
+tidylog = function() {
+  require("conflicted")
+  getNamespaceExports("tidylog") %>%
+    walk(conflict_prefer, "tidylog")
 }
 
 #-----------------------------------------------------------------------------
 # debug
 #-----------------------------------------------------------------------------
 if (FALSE) {
+  devtools::install_github("albert-ying/Rying")
   m = matrix(1, 10, 10)
   debug(m_to_tibble)
   m_to_tibble(m)
