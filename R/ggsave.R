@@ -9,8 +9,10 @@
 #-----------------------------------------------------------------------------
 
 ggsave2 = function(filename, plot = last_plot(), filetypes = c("pdf", "png"), ...) {
+  barename = str_remove(filename, "\\.[^\\.]+$")
   for (filetype in filetypes) {
-    ggsave(glue("{str_remove(filename, str_c(filetypes[1], "$")}{filetype}"), plot = plot, ...)
+    message(glue("saving to {barename}.{filetype})"))
+    ggsave(glue('{barename}.{filetype})'), plot = plot, device = filetype, ...)
   }
 }
 
